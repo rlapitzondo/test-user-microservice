@@ -1,0 +1,190 @@
+{
+  "openapi" : "3.0.2",
+  "info" : {
+    "title" : "User MicroService",
+    "description" : "Microservicio de acceso a legado de Usuarios",
+    "contact" : {
+      "name" : "Raul H. Lapitzondo",
+      "email" : "raul.lapitzondo@it2insurance.com"
+    },
+    "version" : "0.0.1"
+  },
+  "servers" : [ {
+    "url" : "https://virtserver.swaggerhub.com/rlapitzondo/restserviceusers/0.0.1",
+    "description" : "SwaggerHub API Auto Mocking"
+  } ],
+  "tags" : [ {
+    "name" : "users"
+  } ],
+  "paths" : {
+    "/users/{id_user}" : {
+      "summary" : "Users",
+      "description" : "-some data-",
+      "get" : {
+        "tags" : [ "id number" ],
+        "summary" : "GET-User/{id_user}",
+        "description" : "Obtiene datos de un usuario",
+        "operationId" : "GET_Users",
+        "parameters" : [ {
+          "name" : "id_user",
+          "in" : "path",
+          "description" : "Id de Usuario.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Users"
+                },
+                "examples" : {
+                  "OK" : {
+                    "value" : {
+                      "users" : {
+                        "id_user" : "some text",
+                        "nombre" : "some text",
+                        "apellido" : "some text",
+                        "email" : "some text"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request\r\n\r\nList of supported error codes:\r\n\r\n20: Invalid URL parameter value\r\n25: Missing header\r\n26: Invalid header value\r\n27: Missing query-string parameter\r\n28: Invalid query-string parameter value\r\n",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                },
+                "examples" : {
+                  "NOK2" : {
+                    "value" : {
+                      "code" : 43,
+                      "message" : "some text",
+                      "reference" : "some text",
+                      "timestamp" : "2018-02-10T09:30Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found\r\n\r\nList of supported error codes:\r\n\r\n60: Resource not found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                },
+                "examples" : {
+                  "NOK" : {
+                    "value" : {
+                      "code" : 83,
+                      "message" : "some text",
+                      "reference" : "some text",
+                      "timestamp" : "2018-02-10T09:30Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed\r\n\r\nList of supported error codes:\r\n\r\n61: Method not allowed",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Unprocessable entity Functional error\r\n\r\nList of supported error codes:\r\n\r\n11: Functional Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                },
+                "examples" : {
+                  "NOK2" : {
+                    "value" : {
+                      "code" : 43,
+                      "message" : "some text",
+                      "reference" : "some text",
+                      "timestamp" : "2018-02-10T09:30Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error\r\n\r\nList of supported error codes:\r\n\r\n1: Internal error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Users" : {
+        "title" : "Root Type for Users",
+        "type" : "object",
+        "properties" : {
+          "id_user" : {
+            "type" : "string"
+          },
+          "nombre" : {
+            "type" : "string"
+          },
+          "apellido" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          }
+        },
+        "example" : " - id: string nombre: string apellido: string email: string"
+      },
+      "Error" : {
+        "title" : "Root Type for Error",
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "reference" : {
+            "type" : "string"
+          },
+          "timestamp" : {
+            "type" : "string",
+            "format" : "date-time"
+          }
+        },
+        "example" : "{\n    \"code\": 20,\n    \"message\": \"text\",\n    \"reference\": {},\n    \"timestamp\": \"2019-07-25T15:43:46.481\"\n}"
+      }
+    }
+  }
+}
